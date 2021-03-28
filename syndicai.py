@@ -18,7 +18,7 @@ from utils.torch_utils import select_device
 class PythonPredictor:
 
     def __init__(self, config):
-        pass
+        urllib.request.urlretrieve("https://github.com/ultralytics/yolov5/releases/download/v3.1/yolov5s.pt", "yolov5s.pt")
 
     def predict(self, payload):
         """ Model Run function """
@@ -30,8 +30,8 @@ class PythonPredictor:
         device = select_device()
 
         # Load model
-        model = attempt_load("./best.pt", map_location=device)
-        imgsz = check_img_size(416, s=model.stride.max())  # check img_size
+        model = attempt_load("./yolov5s.pt", map_location=device)
+        imgsz = check_img_size(640, s=model.stride.max())  # check img_size
 
         dataset = LoadImages('./image.png', img_size=imgsz)
 
